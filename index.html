@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <p>Entre com o valor inicial:</p>
+    <input id="initial" type="number" />
+    <input id="final" type="number" />
+    <button id="find">Encontrar Palíndromos</button>
+    <ul id="out"></ul>
+  </body>
+  <script>
+    const btnFind = document.getElementById("find");
+    const result = document.getElementById("out");
+
+    function insertItem(numb) {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = numb;
+      result.appendChild(listItem);
+    }
+
+    function isPalindrome(numb) {
+      if (numb < 10) {
+        return true;
+      }
+      if (numb === parseInt(numb.toString().split("").reverse().join(""))) {
+        return true;
+      }
+      return false;
+    }
+
+    btnFind.addEventListener("click", () => {
+      result.innerHTML = "";
+      const initial = document.getElementById("initial").value;
+      const final = document.getElementById("final").value;
+
+      for (let i = initial; i <= final; i++) {
+        if (i < 0) {
+          i = 1;
+        }
+        if (isPalindrome(i)) {
+          insertItem(i);
+        }
+      }
+    });
+  </script>
+</html>
